@@ -35,9 +35,9 @@ import {
 } from '../assets'
 
 
-// Import Tekisky separately
-import tekisky from "../assets/company/tekisky.png";
-
+import argos from "../assets/company/argos.png";
+import nec from "../assets/company/nec.png";
+import hertzsoft from "../assets/company/hertzsoft.png";
 
 export const navLinks = [
 
@@ -88,30 +88,8 @@ const technologies = [
     icon: javascript,
   },
   {
-    name: "React JS",
-    icon: reactjs,
-  },
-  {
-    name: "gsap",
-    icon: gsap,
-  },
-  {
-    name: "framer",
-    icon: framer,
-  },
-
- 
-  {
-    name: "Three JS",
-    icon: threejs,
-  },
-  {
     name: "figma",
     icon: figma,
-  },
-  {
-    name: "Redux Toolkit",
-    icon: redux,
   },
   {
     name: "Tailwind CSS",
@@ -120,22 +98,6 @@ const technologies = [
   {
     name: "Material Ui",
     icon: mui,
-  },
-  {
-    name: "Node JS",
-    icon: nodejs,
-  },
-  {
-    name: "Express Js",
-    icon: express,
-  },
-  {
-    name: "AWS",
-    icon: aws,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
   },
   {
     name: "MySql",
@@ -154,7 +116,7 @@ const experiences = [
   {
     title: "Customer Advisor",
     company_name: "Argos",
-    icon: tekisky,
+    icon: argos,
     iconBg: "#383E56",
     date: "Oct 2024 - Dec 2024",
     points: [
@@ -165,14 +127,27 @@ const experiences = [
   {
     title: "Software Engineer",
     company_name: "NEC Software Solutions",
-    icon: tekisky,
+    icon: nec,
     iconBg: "#383E56",
     date: "Jun 2021 - Aug 2023",
     points: [
-      "Developing and maintaining web applications using MERN technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Collaborated with cross-functional teams to deliver innovative software solutions, streamlining Agile product workflows.",
+      "Facilitated sprint planning, gathering user feedback and translating them into prioritized features for product roadmaps.",
+      "Mitigated risks through proactive analysis, reducing delays by 15% for seamless product execution.",
+      "Leveraged Jira and Azure DevOps to track progress, align teams, and support effective product roadmap execution.",
+      "Integrated customer insights from reviews, reducing support issues by 20% for user-centric design and product gains.",
+      "Optimized SQL queries, improving data performance by 30% to provide actionable product insights for decision-making."
+    ],
+  },
+  {
+    title: "Web Developer Intern",
+    company_name: "Hertzsoft Technologies Pvt. Ltd.",
+    icon: hertzsoft,
+    iconBg: "#383E56",
+    date: "Dec 2019 - Aug 2020",
+    points: [
+      "Proactively coded responsive websites, ensuring seamless user experiences that sparked my interest in product design.",
+      "Managed project timelines with stakeholders, aligning deliverables with goals, honing my skills in team coordination.",
     ],
   },
 ];
@@ -180,26 +155,34 @@ const experiences = [
 const testimonials = [
   {
     testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Huzaif proved me wrong.",
-    name: "MD Mustaqeem",
-    designation: "Ecommerce",
-    company: "QuickMart",
+      "Rahil was just fresh out of college when he joined the team, but the way he used to work was really good. He used to complete all the assigned activities on time and with minimal help or supervision. In terms of coding, his code had no rework or very minimal rework required when a complex module was implemented. The best quality I like about him is that he takes feedback positively and quickly adapts to those changes. Given his experience, his work is exceptional, and he is not afraid to ask questions. I am sure that he will be an asset wherever he goes!",
+    name: "Neekhil Dedhia",
+    designation: "Senior Software Developer",
+    company: "Gamanet",
     image: firstTestimonial,
   },
   {
     testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Huzaif does.",
-    name: "Abdul Raheman",
-    designation: "Ecommerce Business",
-    company: "justbuyz",
+      "Rahil is a highly motivated and competitive professional who joined our team straight out of college, already well-versed in web technologies. He has a proven ability to learn new technologies quickly and apply them to real-world projects. He consistently delivered assignments on time with minimal supervision, and his work requires very few revisions if any. His strong analytical skills enabled him to quickly grasp product knowledge and make significant contributions in a remarkably short time. Rahil is able to convey his thoughts concisely and collaborate effectively with the team. Rahil's willingness to embrace feedback and his proactive approach to learning make him an exceptional team member.",
+    name: "Girish Lokhande",
+    designation: "Solutions Architect",
+    company: "NEC Software Solutions",
     image: secondTestimonial,
   },
   {
     testimonial:
-      "After Huzaif optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "James Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
+      "From the moment Rahil joined, he demonstrated an extraordinary ability to grasp product knowledge swiftly, enabling him to make valuable contributions in a remarkably short period. His natural communication skills have been an asset to our team, as he effortlessly conveys complex information concisely and transparently. His open and proactive communication style allows him to address roadblocks effectively, seeking input from Product teams, the QA team, or the Development team as needed. Moreover, he has seamlessly handled tasks delegated by other developers, analyzing multiple scenarios precisely and collaborating effectively with cross-functional teams. I highly recommend him for any challenging software development project.",
+    name: "Tejashri Athalye",
+    designation: "Programme Manager",
+    company: "NEC Software Solutions",
+    image: secondTestimonial,
+  },
+  {
+    testimonial:
+      "Rahil is a technically adept individual, highly enthusiastic, and highly committed to every responsibility he takes. His adaptability shines as he excels across various technologies, and his communication skills are exceptional, enabling him to convey complex ideas with clarity and precision. As a strong team player, Rahil will be a valuable asset to any group. I wish him all the best in his future endeavors.",
+    name: "Kiran Sakpal",
+    designation: "Technical Lead",
+    company: "NEC Software Solutions",
     image: thirdTestimonial,
   },
 ];
