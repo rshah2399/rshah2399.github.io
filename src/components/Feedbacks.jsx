@@ -51,14 +51,14 @@ const FeedbackCard = ({ testimonial, name, designation, company, image, index, a
         swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
-  }, [activeReadMore, index, swiperRef]); // Added swiperRef as dependency
+  }, [activeReadMore, index, swiperRef]);
 
   return (
     <div ref={cardRef} className="bg-black-200 p-10 rounded-3xl w-full">
       <p className="text-white font-black text-[48px]">"</p>
 
       <div className="mt-1">
-        <p className="text-white tracking-wider text-[18px] text-justify">
+        <p className="text-white tracking-wider text-[18px]">
           {truncatedText}
         </p>
         {testimonial.length > charLimit && (
@@ -149,7 +149,14 @@ const Feedbacks = () => {
         }
       };
 
+      const handleSlideChange = () => {
+        if (swiperRef.current) {
+          swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      };
+
       swiperInstance.on("slideChange", closeReadMore);
+      swiperInstance.on("slideChange", handleSlideChange); // Added slideChange listener
       swiperInstance.on("touchStart", closeReadMore);
       swiperInstance.on("dragMove", closeReadMore);
       swiperInstance.on("click", closeReadMore);
@@ -193,7 +200,7 @@ const Feedbacks = () => {
       <div className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}>
         <div>
           <p className={styles.sectionSubText}>What others say</p>
-          <h2 className={styles.sectionHeadText}>Recommendations</h2>
+          <h2 className={styles.sectionHeadText}>Recommendations.</h2>
         </div>
       </div>
       <div className={`-mt-20 pb-14 ${styles.paddingX}`}>
