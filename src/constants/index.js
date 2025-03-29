@@ -1,9 +1,7 @@
 
 import {
   logo,
-  backend,
   creator,
-  mobile,
   web,
   github,
   menu,
@@ -13,22 +11,19 @@ import {
   project2,
   project3,
   mysql,
-  express,
-  aws,
   mui,
   
-  gsap,
-  framer,
   figma,
   git,
   html,
   javascript,
-  mongodb,
-  nodejs,
-  reactjs,
-  redux,
   tailwind,
-  threejs,
+  php,
+  csharp,
+  net,
+  python,
+  java,
+  bootstrap,
   firstTestimonial,
   secondTestimonial,
   thirdTestimonial,
@@ -88,7 +83,15 @@ const technologies = [
     icon: javascript,
   },
   {
-    name: "figma",
+    name: "C#",
+    icon: csharp,
+  },
+  {
+    name: ".Net",
+    icon: net,
+  },
+  {
+    name: "Figma",
     icon: figma,
   },
   {
@@ -105,11 +108,25 @@ const technologies = [
   },
 
   {
-    name: "git",
+    name: "Git",
     icon: git,
   },
- 
-
+  {
+    name: "PHP",
+    icon: php,
+  },
+  {
+    name: "Java",
+    icon: java,
+  },
+  {
+    name: "Python",
+    icon: python,
+  },
+  {
+    name: "Bootstrap",
+    icon: bootstrap,
+  },
 ];
 
 const experiences = [

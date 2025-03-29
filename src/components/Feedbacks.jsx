@@ -31,7 +31,9 @@ const FeedbackCard = ({ testimonial, name, designation, company, image, index, a
       setIsExpanded(false);
       setActiveReadMore(null);
       if (swiperRef.current) {
-        swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(() => { // Added timeout
+          swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 10);
       }
     } else {
       setActiveReadMore(index);
@@ -48,7 +50,9 @@ const FeedbackCard = ({ testimonial, name, designation, company, image, index, a
     if (activeReadMore !== index && isExpanded) {
       setIsExpanded(false);
       if (swiperRef.current) {
-        swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(() => { // Added timeout
+          swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 10);
       }
     }
   }, [activeReadMore, index, swiperRef]);
@@ -133,7 +137,9 @@ const Feedbacks = () => {
             setTimeout(() => {
               setActiveReadMore(null);
               if (swiperRef.current) {
-                swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+                setTimeout(() => { // Added timeout
+                  swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+                }, 10);
               }
             }, 0);
           } else if (event.target.closest("[data-readmore='true']") && activeReadMore !== null) {
@@ -141,7 +147,9 @@ const Feedbacks = () => {
               setTimeout(() => {
                 setActiveReadMore(null);
                 if (swiperRef.current) {
-                  swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+                  setTimeout(() => { // Added timeout
+                    swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }, 10);
                 }
               }, 0);
             }
@@ -151,12 +159,14 @@ const Feedbacks = () => {
 
       const handleSlideChange = () => {
         if (swiperRef.current) {
-          swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+          setTimeout(() => { // Added timeout
+            swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 10);
         }
       };
 
       swiperInstance.on("slideChange", closeReadMore);
-      swiperInstance.on("slideChange", handleSlideChange); // Added slideChange listener
+      swiperInstance.on("slideChange", handleSlideChange);
       swiperInstance.on("touchStart", closeReadMore);
       swiperInstance.on("dragMove", closeReadMore);
       swiperInstance.on("click", closeReadMore);
@@ -168,7 +178,9 @@ const Feedbacks = () => {
 
     const scrollIntoView = () => {
       if (swiperRef.current) {
-        swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(() => { // Added timeout
+          swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 10);
       }
     };
 
@@ -200,7 +212,7 @@ const Feedbacks = () => {
       <div className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}>
         <div>
           <p className={styles.sectionSubText}>What others say</p>
-          <h2 className={styles.sectionHeadText}>Recommendations.</h2>
+          <h2 className={styles.sectionHeadText}>Testimonials.</h2>
         </div>
       </div>
       <div className={`-mt-20 pb-14 ${styles.paddingX}`}>
