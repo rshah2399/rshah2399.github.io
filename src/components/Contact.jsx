@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react"; // Import useEffect
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
@@ -16,6 +16,7 @@ const Contact = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(false); // New state for submit button
 
   const handleChange = (e) => {
     const { target } = e;
@@ -27,8 +28,18 @@ const Contact = () => {
     });
   };
 
+  // useEffect to check if all fields are filled
+  useEffect(() => {
+    setCanSubmit(form.name && form.email && form.message);
+  }, [form]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!canSubmit) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
     setLoading(true);
 
     emailjs
@@ -116,7 +127,10 @@ const Contact = () => {
 
           <button
             type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
+            className={`bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary ${
+              canSubmit ? "" : "opacity-50 cursor-not-allowed"
+            }`}
+            disabled={!canSubmit} // Disable the button if canSubmit is false
           >
             {loading ? "Sending..." : "Send"}
           </button>
