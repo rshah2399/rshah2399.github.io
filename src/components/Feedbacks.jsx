@@ -31,16 +31,28 @@ const FeedbackCard = ({ testimonial, name, designation, company, image, index, a
       setIsExpanded(false);
       setActiveReadMore(null);
       if (swiperRef.current) {
-        setTimeout(() => { // Added timeout
-          swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 10);
+        if (swiperRef.current.swiper) {
+          swiperRef.current.swiper.allowSlideNext = true;
+          swiperRef.current.swiper.allowSlidePrev = true;
+        }
+        if (swiperRef.current) {
+          requestAnimationFrame(() => {
+            swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        }
       }
     } else {
       setActiveReadMore(index);
       setIsExpanded(true);
+      if (swiperRef.current && swiperRef.current.swiper) {
+        swiperRef.current.swiper.allowSlideNext = false;
+        swiperRef.current.swiper.allowSlidePrev = false;
+      }
       setTimeout(() => {
         if (detailsRef.current) {
-          detailsRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+          setTimeout(() => {
+            detailsRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+          }, 100);
         }
       }, 0);
     }
@@ -50,9 +62,15 @@ const FeedbackCard = ({ testimonial, name, designation, company, image, index, a
     if (activeReadMore !== index && isExpanded) {
       setIsExpanded(false);
       if (swiperRef.current) {
-        setTimeout(() => { // Added timeout
-          swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 10);
+        if (swiperRef.current.swiper) {
+          swiperRef.current.swiper.allowSlideNext = true;
+          swiperRef.current.swiper.allowSlidePrev = true;
+        }
+        if (swiperRef.current) {
+          requestAnimationFrame(() => {
+            swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        }
       }
     }
   }, [activeReadMore, index, swiperRef]);
@@ -101,86 +119,122 @@ const FeedbackCard = ({ testimonial, name, designation, company, image, index, a
 const Feedbacks = () => {
   const swiperRef = useRef(null);
   const [activeReadMore, setActiveReadMore] = useState(null);
+  const swiperInstanceRef = useRef(null);
 
-  useEffect(() => {
-    const swiperInstance = swiperRef.current?.swiper;
-    if (swiperInstance) {
-      ScrollTrigger.create({
-        trigger: swiperRef.current,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => {
-          if (swiperInstance.autoplay) {
-            swiperInstance.autoplay.start();
-          }
-        },
-        onLeave: () => {
-          if (swiperInstance.autoplay) {
-            swiperInstance.autoplay.stop();
-          }
-        },
-        onEnterBack: () => {
-          if (swiperInstance.autoplay) {
-            swiperInstance.autoplay.start();
-          }
-        },
-        onLeaveBack: () => {
-          if (swiperInstance.autoplay) {
-            swiperInstance.autoplay.stop();
-          }
-        },
-      });
-
-      const closeReadMore = (event) => {
-        if (event && event.target) {
-          if (!event.target.closest("[data-readmore='true']")) {
-            setTimeout(() => {
-              setActiveReadMore(null);
-              if (swiperRef.current) {
-                setTimeout(() => { // Added timeout
-                  swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-                }, 10);
-              }
-            }, 0);
-          } else if (event.target.closest("[data-readmore='true']") && activeReadMore !== null) {
-            if (activeReadMore !== parseInt(event.target.closest(".swiper-slide").dataset.swiperSlideIndex)) {
-              setTimeout(() => {
-                setActiveReadMore(null);
-                if (swiperRef.current) {
-                  setTimeout(() => { // Added timeout
-                    swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }, 10);
-                }
-              }, 0);
+  const closeReadMore = (event) => {
+    if (event && event.target) {
+      if (!event.target.closest("[data-readmore='true']")) {
+        setTimeout(() => {
+          setActiveReadMore(null);
+          if (swiperRef.current) {
+            if (swiperRef.current.swiper) {
+              swiperRef.current.swiper.allowSlideNext = true;
+              swiperRef.current.swiper.allowSlidePrev = true;
+            }
+            if (swiperRef.current) {
+              requestAnimationFrame(() => {
+                swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+              });
             }
           }
+        }, 0);
+      } else if (event.target.closest("[data-readmore='true']") && activeReadMore !== null) {
+        if (activeReadMore !== parseInt(event.target.closest(".swiper-slide").dataset.swiperSlideIndex)) {
+          setTimeout(() => {
+            setActiveReadMore(null);
+            if (swiperRef.current) {
+              if (swiperRef.current.swiper) {
+                swiperRef.current.swiper.allowSlideNext = true;
+                swiperRef.current.swiper.allowSlidePrev = true;
+              }
+              if (swiperRef.current) {
+                requestAnimationFrame(() => {
+                  swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+                });
+              }
+            }
+          }, 0);
         }
-      };
-
-      const handleSlideChange = () => {
-        if (swiperRef.current) {
-          setTimeout(() => { // Added timeout
-            swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-          }, 10);
-        }
-      };
-
-      swiperInstance.on("slideChange", closeReadMore);
-      swiperInstance.on("slideChange", handleSlideChange);
-      swiperInstance.on("touchStart", closeReadMore);
-      swiperInstance.on("dragMove", closeReadMore);
-      swiperInstance.on("click", closeReadMore);
-      swiperInstance.on("transitionEnd", closeReadMore);
+      }
     }
+  };
 
+  const handleSwiper = (swiperInstance) => {
+    swiperInstanceRef.current = swiperInstance;
+
+    ScrollTrigger.create({
+      trigger: swiperRef.current,
+      start: "top center",
+      end: "bottom center",
+      onEnter: () => {
+        if (swiperInstance.autoplay) {
+          swiperInstance.autoplay.start();
+        }
+      },
+      onLeave: () => {
+        if (swiperInstance.autoplay) {
+          swiperInstance.autoplay.stop();
+        }
+      },
+      onEnterBack: () => {
+        if (swiperInstance.autoplay) {
+          swiperInstance.autoplay.start();
+        }
+      },
+      onLeaveBack: () => {
+        if (swiperInstance.autoplay) {
+          swiperInstance.autoplay.stop();
+        }
+      },
+    });
+
+    const handleSlideChange = () => {
+      if (swiperRef.current) {
+        if (swiperRef.current.swiper) {
+          swiperRef.current.swiper.allowSlideNext = true;
+          swiperRef.current.swiper.allowSlidePrev = true;
+        }
+        if (swiperRef.current) {
+          requestAnimationFrame(() => {
+            swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        }
+      }
+    };
+
+    swiperInstance.on("slideChange", () => {
+      closeReadMore();
+      handleSlideChange();
+    });
+    swiperInstance.on("touchStart", () => {
+      closeReadMore();
+    });
+    swiperInstance.on("dragMove", () => {
+      closeReadMore();
+    });
+    swiperInstance.on("click", () => {
+      closeReadMore();
+    });
+    swiperInstance.on("transitionEnd", () => {
+      closeReadMore();
+    });
+    swiperInstance.on("touchMove", () => {
+      closeReadMore();
+    });
+    swiperInstance.on("sliderMove", () => {
+      closeReadMore();
+    });
+  };
+
+  useEffect(() => {
     const prevButton = document.querySelector(".swiper-button-prev");
     const nextButton = document.querySelector(".swiper-button-next");
 
     const scrollIntoView = () => {
       if (swiperRef.current) {
-        setTimeout(() => { // Added timeout
+        requestAnimationFrame(() => {
           swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 10);
+        });
       }
     };
 
@@ -197,12 +251,19 @@ const Feedbacks = () => {
       });
     }
 
+    if (swiperRef.current) {
+      swiperRef.current.addEventListener("touchmove", closeReadMore);
+    }
+
     return () => {
       if (prevButton) {
         prevButton.removeEventListener("click", scrollIntoView);
       }
       if (nextButton) {
         nextButton.removeEventListener("click", scrollIntoView);
+      }
+      if (swiperRef.current) {
+        swiperRef.current.removeEventListener("touchmove", closeReadMore);
       }
     };
   }, []);
@@ -244,6 +305,7 @@ const Feedbacks = () => {
             disableOnInteraction: false,
           }}
           className="swiper-container"
+          onSwiper={handleSwiper}
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={testimonial.name} data-swiper-slide-index={index}>
