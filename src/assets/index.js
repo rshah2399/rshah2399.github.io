@@ -6,9 +6,9 @@ import menu from "./menu.svg";
 import close from "./close.svg";
 import css from "./tech/css.png";
 import figma from "./tech/figma.png";
-import gearXpert from './gearXpert.png';
-import project3 from './project3.webp';
-import project2 from './proj1.webp'
+import patientAppointment from './patientAppointment.png';
+import employeeManagement from './employeeManagement.png';
+import kneeInspect from './kneeInspect.png';
 import mysql from './tech/mysql.png';
 import mui from './tech/mui.png'
 import git from "./tech/git.png";
@@ -21,9 +21,10 @@ import java from './tech/java.png'
 import python from './tech/python.png'
 import net from './tech/net.png'
 import csharp from './tech/csharp.png'
-import firstTestimonial from './Tars Ken.webp';
-import secondTestimonial from './image.webp';
-import thirdTestimonial from './third testimonial.webp'
+import neekhil from './neekhil.png';
+import kiran from './kiran.png';
+import tejashri from './tejashri.png'
+import girish from './girish.png'
 
 export {
   logo,
@@ -33,14 +34,15 @@ export {
   menu,
   close,
   css,
-  gearXpert,
-  project2,
-  project3,
+  patientAppointment,
+  employeeManagement,
+  kneeInspect,
   mysql,
   mui,
-  firstTestimonial,
-  secondTestimonial,
-  thirdTestimonial,
+  kiran,
+  neekhil,
+  tejashri,
+  girish,
   figma,
   git,
   html,

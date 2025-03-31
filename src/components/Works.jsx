@@ -38,8 +38,8 @@ const ProjectCard = ({
           trigger: el,
           start: "top bottom",  // Trigger when the top of the element hits the bottom of the viewport
           end: "top center",    // End when the top reaches the center of the viewport
-          scrub: true,          // Smoothly sync scroll and animation
-          markers: false,       // Set to `true` to see debug markers
+          scrub: true,        // Smoothly sync scroll and animation
+          markers: false,      // Set to `true` to see debug markers
         },
       }
     );
@@ -59,7 +59,7 @@ const ProjectCard = ({
           <img
             src={image}
             alt="project_image"
-            className="w-full h-full object-cover object-left rounded-2xl"
+            className="w-full h-full object-contain rounded-2xl" // Changed object-cover to object-contain
           />
 
           <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
@@ -129,7 +129,7 @@ const Works = () => {
 
       <div className="w-full flex">
         <p className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]">
-          Following projects showcase my skills and experience through real-world examples of my work. Each project is briefly described with links to code repositories and live demos. It reflects my ability to solve complex problems, work with different technologies, and manage projects effectively.
+          Following projects showcase my skills and experience through real-world examples of my work. Each project is briefly described with links to code repositories. It reflects my ability to solve complex problems, work with different technologies, and manage projects effectively.
         </p>
       </div>
 

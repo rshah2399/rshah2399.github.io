@@ -7,9 +7,9 @@ import {
   menu,
   close,
   css,
-  gearXpert,
-  project2,
-  project3,
+  patientAppointment,
+  employeeManagement,
+  kneeInspect,
   mysql,
   mui,
   
@@ -24,9 +24,10 @@ import {
   python,
   java,
   bootstrap,
-  firstTestimonial,
-  secondTestimonial,
-  thirdTestimonial,
+  neekhil,
+  kiran,
+  girish,
+  tejashri,
 } from '../assets'
 
 
@@ -176,7 +177,7 @@ const testimonials = [
     name: "Neekhil Dedhia",
     designation: "Senior Software Developer",
     company: "Gamanet",
-    image: firstTestimonial,
+    image: neekhil,
   },
   {
     testimonial:
@@ -184,7 +185,7 @@ const testimonials = [
     name: "Girish Lokhande",
     designation: "Solutions Architect",
     company: "NEC Software Solutions",
-    image: secondTestimonial,
+    image: girish,
   },
   {
     testimonial:
@@ -192,7 +193,7 @@ const testimonials = [
     name: "Tejashri Athalye",
     designation: "Programme Manager",
     company: "NEC Software Solutions",
-    image: secondTestimonial,
+    image: tejashri,
   },
   {
     testimonial:
@@ -200,18 +201,68 @@ const testimonials = [
     name: "Kiran Sakpal",
     designation: "Technical Lead",
     company: "NEC Software Solutions",
-    image: thirdTestimonial,
+    image: kiran,
   },
 ];
 
 const projects = [
   {
-    name: "Tekisky Mart",
+    name: "Employee Management",
     description:
-      "Tekisky Mart is a web-based platform that allows users to search, explore, and purchase a wide range of products from various providers, offering a seamless and efficient shopping experience.",
+      "This web-based app simplifies HR tasks by managing employee profiles, admin accounts, categories, departments, designations, and salaries. With a responsive Tailwind CSS interface, it offers a dashboard with key metrics and insights, ensuring secure, scalable operations via PHP and libraries like jQuery and DataTables, ideal for boosting business productivity.",
     tags: [
       {
-        name: "react",
+        name: "tailwind",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "javascript",
+        color: "green-text-gradient",
+      },
+      {
+        name: "php",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "sql",
+        color: "white-text-gradient",
+      },
+    ],
+    image: employeeManagement,
+    source_code_link: "https://github.com/rshah2399/EmployeeManagement",
+  },
+  {
+    name: "Patient Apoointment System",
+    description:
+      "A website that simplified healthcare scheduling by allowing patients to register and book appointments, improving access to care. It enabled doctors to upload reports for patients to download, streamlining communication, while my focus on user-friendly design enhanced the overall healthcare experience.",
+    tags: [
+      {
+        name: "html/css",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "javascript",
+        color: "white-text-gradient",
+      },
+      {
+        name: "php",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "sql",
+        color: "green-text-gradient",
+      },
+    ],
+    image: patientAppointment,
+    source_code_link: "https://github.com/rshah2399/Patient-Appointment-System",
+  },
+  {
+    name: "Knee Inspect",
+    description:
+      "An app that I led from idea to launch which revolutionized knee assessments for doctors by enabling photo-based quadriceps angle measurements across the full software development lifecycle, from concept to testing. I designed its logo and intro pages to boost user engagement with key posture insights, and published a research paper showcasing my passion for innovative healthcare solutions.",
+    tags: [
+      {
+        name: "react-native",
         color: "blue-text-gradient",
       },
       {
@@ -219,63 +270,17 @@ const projects = [
         color: "white-text-gradient",
       },
       {
-        name: "node",
+        name: "ML",
         color: "pink-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "javascript",
         color: "green-text-gradient",
       },
  
     ],
-    image: project2,
-    source_code_link: "https://github.com/",
-  },
-  {
-    name: "GearXpert",
-    description:
-      "GearXpert is your ultimate destination for premium auto parts and accessories, Whether you're an automobile enthusiast or a professional, find everything you need to upgrade, repair.",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "emailJs",
-        color: "green-text-gradient",
-      },
-      {
-        name: "Gsap",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: gearXpert,
-    source_code_link: "https://github.com/",
-  },
-  {
-    name: "GoGroove-Ecommerce",
-    description:
-      "Go-Groove is your ultimate destination for premium products across various categories. Whether you're a savvy shopper or a professional, enhance, and simplify your lifestyle—all in one place!",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "express",
-        color: "white-text-gradient",
-      },
-      {
-        name: "node",
-        color: "green-text-gradient",
-      },
-      {
-        name: "mongodb",
-        color: "green-text-gradient",
-      },
-    ],
-    image: project3,
-    source_code_link: "https://github.com/",
+    image: kneeInspect,
+    source_code_link: "https://github.com/munishvira/Qangle",
   },
 ];
 
