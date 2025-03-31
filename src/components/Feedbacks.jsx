@@ -120,6 +120,7 @@ const Feedbacks = () => {
   const swiperRef = useRef(null);
   const [activeReadMore, setActiveReadMore] = useState(null);
   const swiperInstanceRef = useRef(null);
+  const [isFirstRender, setIsFirstRender] = useState(true); // Add this line
 
   const closeReadMore = (event) => {
     if (event && event.target) {
@@ -131,7 +132,7 @@ const Feedbacks = () => {
               swiperRef.current.swiper.allowSlideNext = true;
               swiperRef.current.swiper.allowSlidePrev = true;
             }
-            if (swiperRef.current) {
+            if (swiperRef.current && !isFirstRender) { // Add check here
               requestAnimationFrame(() => {
                 swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
               });
@@ -147,7 +148,7 @@ const Feedbacks = () => {
                 swiperRef.current.swiper.allowSlideNext = true;
                 swiperRef.current.swiper.allowSlidePrev = true;
               }
-              if (swiperRef.current) {
+              if (swiperRef.current && !isFirstRender) { // Add check here
                 requestAnimationFrame(() => {
                   swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
                 });
@@ -194,7 +195,7 @@ const Feedbacks = () => {
           swiperRef.current.swiper.allowSlideNext = true;
           swiperRef.current.swiper.allowSlidePrev = true;
         }
-        if (swiperRef.current) {
+        if (swiperRef.current && !isFirstRender) { // Add check here
           requestAnimationFrame(() => {
             swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
           });
@@ -231,7 +232,7 @@ const Feedbacks = () => {
     const nextButton = document.querySelector(".swiper-button-next");
 
     const scrollIntoView = () => {
-      if (swiperRef.current) {
+      if (swiperRef.current && !isFirstRender) { // Add check here
         requestAnimationFrame(() => {
           swiperRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
         });
@@ -265,6 +266,7 @@ const Feedbacks = () => {
       if (swiperRef.current) {
         swiperRef.current.removeEventListener("touchmove", closeReadMore);
       }
+      setIsFirstRender(false); // Add this line
     };
   }, []);
 

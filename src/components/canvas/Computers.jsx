@@ -1,10 +1,14 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
+
+  // Adjust scale based on screen size
+  const scale = isMobile ? 1.0 : 1.75; // Increased scale for both mobile and desktop
+  const position = isMobile ? [0, -2, -1] : [0, -4.0, -1.5]; // Adjusted position
 
   return (
     <mesh>
@@ -22,8 +26,8 @@ const Computers = ({ isMobile }) => {
       <pointLight intensity={isMobile ? 0.8 : 1} />
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.4 : 0.75}
-        position={isMobile ? [-0.5, -2.75, -1] : [0, -3.75, -1.5]}
+        scale={scale} // Using the adjusted scale
+        position={position} // Using the adjusted position
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -32,6 +36,7 @@ const Computers = ({ isMobile }) => {
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const canvasRef = useRef();
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 500px)");
@@ -48,18 +53,43 @@ const ComputersCanvas = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (canvasRef.current && isMobile) {
+      const handleTouchStart = () => {
+        canvasRef.current.style.touchAction = "auto";
+      };
+
+      const handleTouchEnd = () => {
+        canvasRef.current.style.touchAction = "pan-y";
+      };
+
+      canvasRef.current.addEventListener("touchstart", handleTouchStart);
+      canvasRef.current.addEventListener("touchend", handleTouchEnd);
+      canvasRef.current.addEventListener("touchcancel", handleTouchEnd);
+
+      return () => {
+        canvasRef.current.removeEventListener("touchstart", handleTouchStart);
+        canvasRef.current.removeEventListener("touchend", handleTouchEnd);
+        canvasRef.current.removeEventListener("touchcancel", handleTouchEnd);
+      };
+    } else if (canvasRef.current) {
+      canvasRef.current.style.touchAction = "auto";
+    }
+  }, [isMobile]);
+
   return (
     <Canvas
+      ref={canvasRef}
       frameloop="demand"
       shadows
       dpr={isMobile ? [1, 1.5] : [1, 2]}
       camera={{ position: [20, 3, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
-      style={{ pointerEvents: isMobile ? "none" : "auto" }} // Disable pointer events on mobile
+      style={{ pointerEvents: "auto" }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
-          enabled={!isMobile} // Disable controls entirely on mobile
+          enabled={true}
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
